@@ -1,0 +1,42 @@
+
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  
+  <div class="example-container mat-elevation-z8">
+  
+    <mat-table [dataSource]="dataSource" matSort>  
+        
+      <!-- Country Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+      </ng-container>
+       <!-- Code Column -->
+       <ng-container matColumnDef="alpha3Code">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Code </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.alpha3Code}} </mat-cell>
+      </ng-container>
+      <!-- capital Column -->
+      <ng-container matColumnDef="capital">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Capital </mat-header-cell>
+          <mat-cell  *matCellDef="let row">             
+           <a [routerLink]="['/weather', row.capital]"  class="mat-row-link"> {{row.capital}} </a>
+        </mat-cell>      
+      </ng-container>
+  
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+  
+  
+  <!-- Copyright 2018 Google Inc. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->
