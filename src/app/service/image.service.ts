@@ -11,6 +11,6 @@ export class ImageService {
   constructor(private http: HttpClient) 
   { }
   getImage(imageId: string): Observable<Blob> {
-    return this.http.get(environment.imageIconBaseUrl, { responseType: 'blob' });
+    return this.http.get(environment.imageIconBaseUrl, { responseType: 'blob' }); 
   }
 }
