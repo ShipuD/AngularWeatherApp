@@ -8,16 +8,14 @@ import { CountryComponent } from './country/country.component';
 import { WeatherComponent } from './weather/weather.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { WeatherService } from './service/weather.service';
-import {MatTableModule } from '@angular/material/table';
-import {MatPaginatorModule } from '@angular/material/paginator';
-import {MatSortModule} from '@angular/material/sort';
-import {MatInputModule} from '@angular/material/input';
-import {FormsModule} from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule} from '@angular/material/sort';
+import { MatInputModule} from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { FormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TemperatureConverterPipe } from './shared/temperature-converter.pipe';
-import { map } from 'rxjs/operators';
-//import { MapOperator } from 'rxjs/internal/operators/map';
-
 
 @NgModule({
   declarations: [
@@ -36,6 +34,7 @@ import { map } from 'rxjs/operators';
     MatPaginatorModule,
     MatSortModule,
     MatInputModule,
+    MatProgressSpinnerModule,
     FormsModule
   ],
   providers: [WeatherService],
