@@ -23,7 +23,7 @@ export class WeatherComponent implements OnInit {
               }
 
   ngOnInit(): void {
-    this.weatherData.isDay = true;
+    //this.weatherData.isDay = true;
     this.capital = this.route.snapshot.paramMap.get('capital');
     this.getWeatherData(this.capital);
     //this.selectedVal = "metric";
