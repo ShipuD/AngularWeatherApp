@@ -31,13 +31,11 @@ export class CountryComponent implements OnInit {
 
   constructor(private weatherService:WeatherService,
               private router: Router ) {        
-       // this.dataSource = new MatTableDataSource(this.countries);
+       
   }
 
   ngOnInit(): void {
      this.getAllCountries();
-    //this.dataSource = new MatTableDataSource(this.countries);
-    
   }
 
   getAllCountries()  {
@@ -55,7 +53,7 @@ export class CountryComponent implements OnInit {
           },
           ()=> {},
           ()=> {
-            console.log("Completed", this.countries);
+            //console.log("Completed", this.countries);
             this.dataSource = new MatTableDataSource(this.countries);          
           }
           );
@@ -64,10 +62,6 @@ export class CountryComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator; 
-    //setTimeout(() => this.dataSource.paginator = this.paginator);
-   
-    //this.dataSource = new MatTableDataSource(this.countries);
-    //this.getAllCountries();
   }
 
   applyFilter(filterValue: string) {

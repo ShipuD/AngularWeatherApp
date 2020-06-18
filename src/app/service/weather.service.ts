@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Country } from '../models/country';
 import { CountryComponent } from '../country/country.component';
 import { of} from 'rxjs';
+import { WeatherData } from '../models/weather-data';
 
 @Injectable({
   providedIn: 'root'
@@ -26,24 +27,11 @@ export class WeatherService {
   ];
 
   getAllCountries():Observable<Country[]> {
-       let country = this.http.get<Country[]>(environment.countryBaseUrl);
-        //console.log('Service1 :' + country[0]);
-        //console.log('Service2 :' + country[0].name);
-        console.log('Service3 :' + country);
-        
-        return (country);
-
-    //return of(this.countries);
-                   // .subscribe(c => {c as  Country[]})
-                    //.map((res:Response) => <Country[]> res.json());
-                   //  .pipe(
-                       //map((data:any) => data),
-                   //    map(r=>r) = new Country(name,alpha3Code,capital));
-  //};
+       return this.http.get<Country[]>(environment.countryBaseUrl);
   }
   
-  getWeatherItemsByCity(cityName:string):Observable<any> {
-    return this.http.get(
+  getWeatherItemsByCity(cityName:string):Observable<WeatherData> {
+    return this.http.get<WeatherData>(
       environment.weatherBaseUrl +
       'weather?q=' + cityName +
       '&appid=' + environment.appId +
@@ -51,15 +39,22 @@ export class WeatherService {
     )
   }
 
-  getWeatherForecast(cityName: string): Observable<any> {
-    return this.http.get(
+  getWeatherForecast(cityName: string): Observable<WeatherData> {
+    return this.http.get<WeatherData>(
       environment.weatherBaseUrl +
       'forecast?q=' + cityName +
       '&appid=' + environment.appId +
       '&units=' + environment.units
     )
-    
-    
+  }
+
+  getWeatherForecastByUnits(cityName: string,unit:string): Observable<WeatherData> {
+    return this.http.get<WeatherData>(
+      environment.weatherBaseUrl +
+      'forecast?q=' + cityName +
+      '&appid=' + environment.appId +
+      '&units=' + unit
+    )
   }
   private handleError(error: any) {   
     let errMsg: string;

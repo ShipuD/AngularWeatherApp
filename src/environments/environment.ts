@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  appId: '794ee95e63c5a32aaf88cd813fa2e425',
+  appId: '52c2881dbab4fcc489bf6d86474697f7',
   weatherBaseUrl: 'http://api.openweathermap.org/data/2.5/',
   countryBaseUrl: 'https://restcountries.eu/rest/v2/all',
   units: 'metric',

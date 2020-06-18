@@ -1,10 +1,39 @@
 <div>
-    <h2 style="text-transform: uppercase;">Selected City: {{ capital }}</h2>
-    <h3 >{{ weather.weather[0].description  | uppercase }}</h3>
-    
-    <p>Wind speed (meter/sec): {{ weather.wind.speed }}</p>
-        <span class="temperature">Temperature (celsius): {{ weather.main.temp }} </span> <br>
-        <span class="temperature">Temperature (Fahrenheit): {{ ( weather.main.temp | temperatureConverter:'F') }}
-        </span>
-    <p>{{ weather.dt_txt | date:'medium' }}</p>    
+    <h3 style="text-transform: uppercase;">Selected City: {{ capital }}</h3>
+    <p>        
+        <mat-button-toggle-group   name="Units" aria-label="Font Style">
+          <mat-button-toggle (change)="onUnitsChange($event)" value="metric">Metrics</mat-button-toggle>
+          <mat-button-toggle (change)="onUnitsChange($event)" value="imperial">Imperial</mat-button-toggle>          
+        </mat-button-toggle-group>
+    </p>
+    <div *ngIf="weatherData" >
+        <!-- <h3>{{ weatherData.weather[0].description  | uppercase }}</h3> -->
+                
+        <p>Wind speed (meter/sec): {{ weatherData.wind.speed }}° </p>
+        <p>Wind degree : {{ weatherData.wind.deg }}</p>
+            <span class="temperature">Temperature (celsius): {{ weatherData.main.temp | temperatureConverter:'F'}} </span> <br>
+            <span class="temperature">Temperature Min/Max (celsius): {{ weatherData.main.temp_min }} / {{ weatherData.main.temp_max }} </span> <br>
+            <span class="temperature">Real feel (celsius): {{ weatherData.main.feels_like }} </span> <br>
+            <span class="humidity">Humidity : {{ weatherData.main.humidity }} </span> <br>
+            <span class="Pressure">Pressure : {{ weatherData.main.pressure }} </span> <br>
+            <span class="temperature">Temperature (Fahrenheit): {{ ( weatherData.main.temp | temperatureConverter:'F') }}
+            </span>
+        <p>{{ weatherData.dt | date:'medium' }}</p>    
+    </div>
+</div>
+<div id="divMainWeatherMain">
+    <div *ngIf="weatherData.isDay" class="weatherWidgetRow">
+        <i class="fas fa-3x fa-sun sun"></i>
+    </div>
+    <div *ngIf="!weatherData.isDay" class="weatherWidgetRow">
+        <i class="fas fa-3x fa-moon moon"></i>
+    </div>
+    <div  class="weatherWidgetRow cloudDiv">
+        <i class="fas  fa-cloud fa-3x cloud"></i>
+    </div>
+    <div id="weatherWidgetRow" style="font-size: 32px;margin-top: 5px;">{{ weatherData.main.temp}}°</div>
+    <div id="weatherWidgetRow" style="font-size: 12px;">{{ weatherData.main.temp_min }}° / {{ weatherData.main.temp_max }}°</div>
+    <div id="weatherWidgetRow" style="font-size: 12px;"> Feels like : {{ weatherData.main.feels_like }}° </div>    
+    <div id="weatherWidgetRow" style="font-size: 25px; margin-top: 10px;">{{ weatherData.name}}</div>
+    <div id="weatherWidgetRow" style="font-size: 12px;"> Humidity : {{ weatherData.main.humidity}} %</div>    
 </div>
